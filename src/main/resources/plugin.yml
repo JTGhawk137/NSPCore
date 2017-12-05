@@ -1,0 +1,18 @@
+name: NSPCore
+main: com.nonstoppvp.core.NSPCore
+author: JTGhawk137
+description: Core plugin for NSP
+version: 1.0.0
+commands:
+     setspawn:
+        description: Set the spawn for your server
+        usage: /<command>
+     friends:
+        description: Main friends command
+        usage: /<command>
+     orbs:
+        description: Main command for orbs
+        usage: /<command>
+     profile:
+        description: Main command for orbs
+        usage: /<command>

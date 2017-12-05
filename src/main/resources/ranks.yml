@@ -1,0 +1,25 @@
+# - rankName
+#
+#
+#
+#
+#
+#
+
+Ranks:
+  0:
+    name: "&aMessenger"
+    lore:
+      - "Hello"
+      - "World"
+    link:
+    slot:
+    itemStack: "DIAMOND_SWORD"
+  1:
+    name: "&aMessenger"
+    Lore:
+      - "Hello"
+      - "World"
+    link:
+    slot:
+    itemStack: "DIAMOND_SWORD"

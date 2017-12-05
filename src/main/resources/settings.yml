@@ -1,0 +1,31 @@
+# _   _                _____  _                 ______        ______
+#| \ | |              /  ___|| |                | ___ \       | ___ \
+#|  \| |  ___   _ __  \ `--. | |_   ___   _ __  | |_/ /__   __| |_/ /
+#| . ` | / _ \ | '_ \  `--. \| __| / _ \ | '_ \ |  __/ \ \ / /|  __/
+#| |\  || (_) || | | |/\__/ /| |_ | (_) || |_) || |     \ V / | |
+#\_| \_/ \___/ |_| |_|\____/  \__| \___/ | .__/ \_|      \_/  \_|
+#                                        | |
+#                                        |_|
+
+#Is the current server a hub
+hub: false
+
+#What is the current server? Kingdoms, Hub, Skywars, etc...
+Server: kingdoms
+
+#Allow parties
+party: true
+
+#Allow friends
+friends: true
+
+#Link to BuyCraft
+buycraft: None!
+
+#Spawn Cords
+Spawn:
+    x: 0
+    y: 0
+    z: 0
+    yaw:
+    pitch: 0
