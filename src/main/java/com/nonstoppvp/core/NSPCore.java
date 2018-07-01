@@ -36,15 +36,9 @@ public class NSPCore extends JavaPlugin
     //API's
     private LuckPermsApi api;
     private Optional<LuckPermsApi> check;
-
     public static NSPCore getInstance()
     {
         return instance;
-    }
-
-    public static DonationGUI getDonationGUI()
-    {
-        return donationGUI;
     }
 
     @Override
@@ -105,4 +99,10 @@ public class NSPCore extends JavaPlugin
     {
         return em;
     }
+
+    public static DonationGUI getDonationGUI()
+    {
+        return donationGUI;
+    }
+
 }

@@ -10,8 +10,7 @@ import com.nonstoppvp.core.gui.*;
 import com.nonstoppvp.core.profiles.parties.Party;
 import com.nonstoppvp.core.utils.ItemUtils;
 import com.nonstoppvp.core.utils.LevelUtils;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
@@ -20,50 +19,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@Data
 public class NSPPlayer
 {
-    //Player stuffs
-    @Getter
     private UUID uuid;
-    @Getter
     private int level;
-    @Getter
-    @Setter
     private int exp;
-    @Getter
-    @Setter
     private int orbs;
-    @Getter
-    @Setter
     private Party party;
-    @Getter
-    @Setter
     private boolean linkActive;
-    @Getter
-    @Setter
     private boolean isLoaded;
-    @Getter
-    @Setter
     private String rank;
-    //Lists
-    @Getter
+
     private List<UUID> friends = Lists.newArrayList();
-    @Getter
     private List<UUID> requests = Lists.newArrayList();
-    @Getter
+
     private Map<String, Boolean> settings = Maps.newHashMap();
-    @Getter
     private Map<String, String> socialMedia = Maps.newHashMap();
-    @Getter
     private Map<String, GUI> guis = Maps.newHashMap();
-    //GUI's
+
     private ProfileGUI profileGUI = new ProfileGUI();
     private SocialMediaGUI socialMediaGUI = new SocialMediaGUI();
     private FriendsGUI friendsGUI = new FriendsGUI();
     private SettingsGUI settingsGUI = new SettingsGUI();
-    //Document
-    @Getter
-    @Setter
+
     private Document document;
 
     public NSPPlayer(UUID uuid)

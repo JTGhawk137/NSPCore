@@ -72,9 +72,4 @@ public class MongoManager
     {
         return collection.find(new Document("uuid", player.getUuid().toString())).first();
     }
-
-    public MongoClient getMongoClient()
-    {
-        return mongoClient;
-    }
 }

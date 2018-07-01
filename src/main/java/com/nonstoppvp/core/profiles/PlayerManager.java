@@ -37,7 +37,7 @@ public class PlayerManager
 
     public void removeAll()
     {
-        players = null;
-        playersMap = null;
+        players.clear();
+        playersMap.clear();
     }
 }
