@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 
 public class PrefixManager {
 
-    private String PREFIX = "NSP";
+    private final String PREFIX = "NSP";
 
     public String info(String message) {
         return ChatColor.GOLD + PREFIX + " » " + ChatColor.RESET + message;

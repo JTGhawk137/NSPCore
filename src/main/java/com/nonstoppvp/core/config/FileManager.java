@@ -15,14 +15,13 @@ import java.util.Map;
 public class FileManager
 {
 
-    private static Plugin PLUGIN;
+    private static Plugin plugin;
     private static Map<String, FileConfiguration> configs = new HashMap();
 
 
     public static void loadConfigs()
     {
-        PLUGIN = NSPCore.getInstance();
-        load("mysql.yml");
+        plugin = NSPCore.getInstance();
         load("mongo.yml");
         load("settings.yml");
         load("ranks.yml");
@@ -46,12 +45,12 @@ public class FileManager
      */
     public static void load(String fileName)
     {
-        File file = new File(PLUGIN.getDataFolder(), fileName);
+        File file = new File(plugin.getDataFolder(), fileName);
         if (!file.exists())
         {
             try
             {
-                PLUGIN.saveResource(fileName, false);
+                plugin.saveResource(fileName, false);
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -153,7 +152,7 @@ public class FileManager
      */
     public static void reload(String fileName)
     {
-        File file = new File(PLUGIN.getDataFolder(), fileName);
+        File file = new File(plugin.getDataFolder(), fileName);
         if (isFileLoaded(fileName))
         {
             try
@@ -173,7 +172,7 @@ public class FileManager
      */
     public static void save(String fileName)
     {
-        File file = new File(PLUGIN.getDataFolder(), fileName);
+        File file = new File(plugin.getDataFolder(), fileName);
         if (isFileLoaded(fileName))
         {
             try

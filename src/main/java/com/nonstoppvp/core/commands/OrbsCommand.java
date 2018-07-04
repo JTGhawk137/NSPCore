@@ -29,27 +29,21 @@ public class OrbsCommand implements CommandExecutor
                 }
                 if (args.length == 3)
                 {
+                    Player player = Bukkit.getPlayer(args[1]);
+                    int amount = Integer.parseInt(args[2]);
+                    NSPPlayer nPlayer = PlayerManager.getPlayer(player.getUniqueId());
                     if (args[0].equalsIgnoreCase("give"))
                     {
-                        Player player = Bukkit.getPlayer(args[1]);
-                        int amount = Integer.parseInt(args[2]);
-                        NSPPlayer nPlayer = PlayerManager.getPlayer(player.getUniqueId());
                         nPlayer.setOrbs(nPlayer.getOrbs() + amount);
                         sender.sendMessage("§a" + amount + " §7Orbs have been added to §a" + player.getName() + "'s §7Account");
                         return true;
                     } else if (args[0].equalsIgnoreCase("remove"))
                     {
-                        Player player = Bukkit.getPlayer(args[1]);
-                        int amount = Integer.parseInt(args[2]);
-                        NSPPlayer nPlayer = PlayerManager.getPlayer(player.getUniqueId());
                         nPlayer.setOrbs(nPlayer.getOrbs() - amount);
                         sender.sendMessage("§a" + amount + " §7Orbs have been removed to §a" + player.getName() + "'s §7Account");
                         return true;
                     } else if (args[0].equalsIgnoreCase("set"))
                     {
-                        Player player = Bukkit.getPlayer(args[1]);
-                        int amount = Integer.parseInt(args[2]);
-                        NSPPlayer nPlayer = PlayerManager.getPlayer(player.getUniqueId());
                         nPlayer.setOrbs(amount);
                         sender.sendMessage("§a" + player.getName() + "'s §7Orbs have been set to §a" + amount);
                         return true;

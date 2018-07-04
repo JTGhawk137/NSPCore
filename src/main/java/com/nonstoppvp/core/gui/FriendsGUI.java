@@ -1,5 +1,6 @@
 package com.nonstoppvp.core.gui;
 
+import com.nonstoppvp.core.api.GUI;
 import com.nonstoppvp.core.profiles.NSPPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;

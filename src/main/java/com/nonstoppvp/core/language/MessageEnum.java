@@ -6,7 +6,7 @@ public enum MessageEnum
     LOADING("§cPlease wait until your profile is loaded."),
     SETSPAWN("§aYou've set the spawn.");
 
-    String message;
+    private String message;
 
     MessageEnum(String message)
     {

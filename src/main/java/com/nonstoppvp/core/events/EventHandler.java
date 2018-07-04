@@ -11,7 +11,8 @@ import java.util.List;
 public class EventHandler
 {
 
-    private List<Listener> events = Lists.newArrayList();
+    private LuckPermsEvents luckPermsEvents;
+    public List<Listener> events = Lists.newArrayList();
 
     public void registerEvents()
     {
@@ -32,11 +33,8 @@ public class EventHandler
         events.add(new StatsGUI());
         events.add(new DonationGUI());
 
-        new LuckPermsEvents(NSPCore.getInstance(), NSPCore.getInstance().getLuckPermsAPI());
+        luckPermsEvents = new LuckPermsEvents(NSPCore.getInstance(), NSPCore.getInstance().getLuckPermsAPI());
 
-        for (Listener event : events)
-        {
-            NSPCore.getInstance().getServer().getPluginManager().registerEvents(event, NSPCore.getInstance());
-        }
+        events.stream().forEach(s -> NSPCore.getInstance().getServer().getPluginManager().registerEvents(s, NSPCore.getInstance()));
     }
 }

@@ -4,11 +4,14 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mongodb.BasicDBObject;
 import com.nonstoppvp.core.NSPCore;
+import com.nonstoppvp.core.api.GUI;
 import com.nonstoppvp.core.api.events.LevelUpEvent;
 import com.nonstoppvp.core.api.events.SettingChangeEvent;
-import com.nonstoppvp.core.gui.*;
+import com.nonstoppvp.core.gui.FriendsGUI;
+import com.nonstoppvp.core.gui.ProfileGUI;
+import com.nonstoppvp.core.gui.SettingsGUI;
+import com.nonstoppvp.core.gui.SocialMediaGUI;
 import com.nonstoppvp.core.profiles.parties.Party;
-import com.nonstoppvp.core.utils.ItemUtils;
 import com.nonstoppvp.core.utils.LevelUtils;
 import lombok.Data;
 import org.bson.Document;
@@ -50,51 +53,6 @@ public class NSPPlayer
         this.uuid = uuid;
     }
 
-    public void loadPlayer()
-    {
-        party = null;
-        document = NSPCore.getInstance().getMongoManager().getPlayerDoc(this);
-        checkDocument();
-        level = document.getInteger("level");
-        exp = document.getInteger("exp");
-        orbs = document.getInteger("orbs");
-        friends = (List) document.get("friends");
-        settings = (Map) document.get("settings");
-        socialMedia = (Map) document.get("socialmedia");
-        rank = document.getString("rank");
-        loadGUIs();
-        setLoaded(true);
-        Bukkit.getPlayer(uuid).sendMessage("Player loaded");
-    }
-
-    public void savePlayer(boolean update)
-    {
-        document.append("uuid", getUuid().toString());
-        document.append("rank", rank);
-        document.append("level", level);
-        document.append("exp", exp);
-        document.append("orbs", orbs);
-        document.append("friends", getFriends());
-        document.append("socialmedia", new BasicDBObject(getSocialMedia()));
-        document.append("settings", new BasicDBObject(getSettings()));
-
-        if (update)
-            NSPCore.getInstance().getMongoManager().updatePlayerDocument(this, document);
-        else
-            NSPCore.getInstance().getMongoManager().savePlayerDocument(this, document);
-    }
-
-    public void unloadPlayer()
-    {
-        friends = null;
-        settings = null;
-        socialMedia = null;
-        guis = null;
-        document = null;
-        party = null;
-        rank = null;
-    }
-
     public void loadGUIs()
     {
         profileGUI.createGUI(this);
@@ -105,48 +63,6 @@ public class NSPPlayer
         guis.put("friends", friendsGUI);
         settingsGUI.createGUI(this);
         guis.put("settings", settingsGUI);
-    }
-
-    public void handleJoin(final NSPPlayer player)
-    {
-        setLoaded(false);
-        Bukkit.getScheduler().runTaskAsynchronously(NSPCore.getInstance(), () ->
-        {
-            if (!NSPCore.getInstance().getMongoManager().doesPlayerExist(player))
-            {
-                settings.put("playerHide", false);
-                settings.put("censorship", false);
-                settings.put("allowFriendRequests", true);
-                socialMedia.put("twitter", "None");
-                socialMedia.put("youtube", "None");
-                socialMedia.put("instagram", "None");
-                socialMedia.put("twitch", "None");
-                socialMedia.put("discord", "None");
-                level = 1;
-                exp = 0;
-                orbs = 0;
-                rank = "";
-
-                document = new Document();
-                document.append("uuid", getUuid().toString());
-                document.append("level", level);
-                document.append("exp", exp);
-                document.append("orbs", orbs);
-                document.append("friends", getFriends());
-                document.append("socialmedia", new BasicDBObject(getSocialMedia()));
-                document.append("settings", new BasicDBObject(getSettings()));
-
-                NSPCore.getInstance().getMongoManager().createPlayerDocument(player, document);
-                ItemUtils.joinInventory(Bukkit.getPlayer(player.uuid));
-                loadGUIs();
-                setLoaded(true);
-                return;
-            } else
-            {
-                loadPlayer();
-                ItemUtils.joinInventory(Bukkit.getPlayer(player.uuid));
-            }
-        });
     }
 
     /**
@@ -234,5 +150,39 @@ public class NSPPlayer
     {
         if (settings.get("allowFriendRequests"))
             requests.add(uuid);
+    }
+
+    public void loadPlayer()
+    {
+        party = null;
+        document = NSPCore.getInstance().getMongoManager().getPlayerDoc(this);
+        checkDocument();
+        level = document.getInteger("level");
+        exp = document.getInteger("exp");
+        orbs = document.getInteger("orbs");
+        friends = (List) document.get("friends");
+        settings = (Map) document.get("settings");
+        socialMedia = (Map) document.get("socialmedia");
+        rank = document.getString("rank");
+        loadGUIs();
+        setLoaded(true);
+        Bukkit.getPlayer(uuid).sendMessage("Player loaded");
+    }
+
+    public void savePlayer(boolean update)
+    {
+        document.append("uuid", getUuid().toString());
+        document.append("rank", rank);
+        document.append("level", level);
+        document.append("exp", exp);
+        document.append("orbs", orbs);
+        document.append("friends", getFriends());
+        document.append("socialmedia", new BasicDBObject(getSocialMedia()));
+        document.append("settings", new BasicDBObject(getSettings()));
+
+        if (update)
+            NSPCore.getInstance().getMongoManager().updatePlayerDocument(this, document);
+        else
+            NSPCore.getInstance().getMongoManager().savePlayerDocument(this, document);
     }
 }

@@ -13,7 +13,6 @@ public class KillEvent implements Listener
     @EventHandler
     public void onKill(PlayerDeathEvent e)
     {
-        Player dead = e.getEntity();
         Player player = e.getEntity().getKiller();
         NSPPlayer nPlayer = PlayerManager.getPlayer(player.getUniqueId());
         nPlayer.levelUp();

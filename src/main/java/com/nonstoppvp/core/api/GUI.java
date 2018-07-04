@@ -1,4 +1,4 @@
-package com.nonstoppvp.core.gui;
+package com.nonstoppvp.core.api;
 
 import com.nonstoppvp.core.profiles.NSPPlayer;
 import org.bukkit.event.inventory.InventoryClickEvent;

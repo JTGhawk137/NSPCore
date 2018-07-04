@@ -33,6 +33,10 @@ public class NSPCore extends JavaPlugin
     private EnchantUtils enchantUtils = new EnchantUtils();
     private EffectManager em = new EffectManager(this);
 
+    public static void main(String[] args)
+    {
+
+    }
     //API's
     private LuckPermsApi api;
     private Optional<LuckPermsApi> check;
@@ -63,7 +67,6 @@ public class NSPCore extends JavaPlugin
         for (NSPPlayer player : PlayerManager.getPlayers())
         {
             player.savePlayer(false);
-            player.unloadPlayer();
         }
         enchantUtils.handleShutdown();
         instance = null;

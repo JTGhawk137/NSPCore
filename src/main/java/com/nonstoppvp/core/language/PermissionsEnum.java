@@ -8,7 +8,7 @@ public enum PermissionsEnum
     VIEW_ORBS("nsp.vieworbs"),
     GIVE_ORBS("nsp.giveorbs");
 
-    String permission;
+    private String permission;
 
     PermissionsEnum(String permission)
     {
